@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anarchia.gg - Generator Haseł</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Anarchia.gg</h1>
+            <p>Generator haseł do serwera Minecraft</p>
+        </header>
+
+        <main>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="minecraftNick">Nick gracza Minecraft:</label>
+                    <input type="text" id="minecraftNick" placeholder="wpisz nick gracza" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Hasło do serwera:</label>
+                    <input type="password" id="password" placeholder="hasło (14-32 znaki)" required minlength="14" maxlength="32">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="copyBtn">Kopiuj hasło</button>
+                    <button type="button" id="generateBtn">Wygeneruj nowe hasło</button>
+                    <button type="submit">Zapisz hasło</button>
+                </div>
+            </form>
+
+            <div class="info-box">
+                <h3>Informacje</h3>
+                <ul>
+                    <li>Hasła mają od 14 do 32 znaków (liter i cyfr)</li>
+                    <li>Kopiuj hasło po wygenerowaniu</li>
+                    <li>Używaj tylko na serwerze <strong>anarchia.gg</strong></li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Anarchia.gg - Serwer Minecraft</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
