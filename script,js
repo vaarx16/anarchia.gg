@@ -1,0 +1,66 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('password');
+    const generateBtn = document.getElementById('generateBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const form = document.getElementById('passwordForm');
+
+    // Generowanie losowego hasła (14-32 znaki)
+    function generateRandomPassword() {
+        const length = Math.floor(Math.random() * (32 - 14 + 1)) + 14;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let password = '';
+        
+        for (let i = 0; i < length; i++) {
+            password += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        
+        return password;
+    }
+
+    // Wygeneruj nowe hasło
+    generateBtn.addEventListener('click', () => {
+        passwordInput.value = generateRandomPassword();
+        passwordInput.focus();
+    });
+
+    // Kopiuj hasło do schowka
+    copyBtn.addEventListener('click', () => {
+        const password = passwordInput.value;
+        
+        if (password) {
+            navigator.clipboard.writeText(password).then(() => {
+                copyBtn.textContent = 'Skopiowano!';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Kopiuj hasło';
+                }, 2000);
+            });
+        }
+    });
+
+    // Obsługa Enter w formach
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            form.submit();
+        }
+    });
+
+    // Obsługa Submit formularza
+    form.addEventListener('submit', (e) => {
+        const nick = document.getElementById('minecraftNick').value;
+        const password = passwordInput.value;
+
+        if (nick && password) {
+            // Tutaj możesz dodać zapis do localStorage lub API
+            console.log(`Nick: ${nick}, Hasło: ${password}`);
+            // Opcjonalnie: alert lub komunikat
+            e.preventDefault();
+        }
+    });
+
+    // Auto-focus na polu hasła po wpisaniu nicku
+    document.getElementById('minecraftNick').addEventListener('input', () => {
+        if (!passwordInput.value && passwordInput.placeholder !== 'hasło (14-32 znaki)') {
+            passwordInput.focus();
+        }
+    });
+});
